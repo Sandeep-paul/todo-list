@@ -1,38 +1,84 @@
 .wrapper {
-  max-width: 400px;
-  margin: auto;
-  text-align: center;
-  .todo-form {
-    display: flex;
-    justify-content: center;
-    input[type="text"] {
-      & + button {
-        margin-left: 10px;
-      }
-    }
+  h2 {
+    background: #af7eeb;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-align: center;
+    font-size: 1.2rem;
   }
-  ul {
-    max-width: 230px;
-    padding: 0;
-    list-style-type: none;
-    margin: 10px auto;
-    li {
-      text-align: left;
-      padding: 5px 0;
-      border-bottom: 1px solid #c1c1c1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .delete-btn {
-        background: url(../assets/images/delete_trash_icon.svg) right no-repeat;
-        text-indent: -99999px;
-        border: none;
-        width: 20px;
+  max-width: 280px;
+  margin: auto;
+  .inner-wrapper {
+    background: #fff;
+    padding: 0.8rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    .todo-form {
+      // display: flex;
+      // justify-content: center;
+      input[type="text"] {
+        & + button {
+          margin-left: 10px;
+        }
+      }
+      button {
+        background: #af7eeb;
+        border-radius: 30px;
+        color: #ffffff;
+        border: 0;
+        padding: 0.3rem 1.2rem;
+        border: 1px solid #af7eeb;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
-        &:hover,
-        &:active {
+        &:hover {
           transform: scale(1.1);
+        }
+      }
+    }
+    input,
+    select {
+      border: 1px solid #ccc;
+      padding: 6px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    label {
+      margin-bottom: 4px;
+      display: inline-block;
+      font-size: 0.875rem;
+    }
+    ul {
+      max-width: 100%;
+      padding: 0;
+      list-style-type: none;
+      margin: 10px 0 0;
+      li {
+        text-align: left;
+        padding: 5px 0;
+        border-bottom: 1px solid #c1c1c1;
+        display: flex;
+        // align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        .delete-btn {
+          background: url(../assets/images/delete_trash_icon.svg) right
+            no-repeat;
+          text-indent: -99999px;
+          border: none;
+          width: 20px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          &:hover,
+          &:active {
+            transform: scale(1.1);
+          }
+        }
+        h4 {
+          margin: 0 0 5px;
+        }
+        .list-items {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
         }
       }
     }
