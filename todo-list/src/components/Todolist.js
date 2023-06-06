@@ -10,6 +10,12 @@ function Todolist() {
   const [taskPriority3, setTaskPriority3] = useState([]);
   const [taskPriority4, setTaskPriority4] = useState([]);
   const [taskPriority5, setTaskPriority5] = useState([]);
+  const [open, setOpen] = useState("false");
+
+  const accordionHandler = (e) => {
+    e.preventDefault();
+    setOpen(!open);
+  };
 
   const selectHandler = (e) => {
     setPriority(e.target.value);
@@ -116,10 +122,18 @@ function Todolist() {
   };
 
   const cancelHandler = (id) => {
-    const deleteids = tasklists.filter((deleteid) => {
+    const deleteids = taskPriority1.filter((deleteid) => {
       return deleteid.id !== id;
     });
-    setTasklists(deleteids);
+    setTaskPriority1(deleteids);
+    const deleteids1 = taskPriority2.filter((deleteid) => {
+      return deleteid.id !== id;
+    });
+    setTaskPriority2(deleteids1);
+    const deleteids2 = taskPriority3.filter((deleteid) => {
+      return deleteid.id !== id;
+    });
+    setTaskPriority3(deleteids2);
   };
 
   return (
@@ -153,31 +167,44 @@ function Todolist() {
           </form>
         </div>
         <ul>
-          {/* <li>priority1</li> */}
-          {[
-            ...taskPriority1,
-            ...taskPriority2,
-            ...taskPriority3,
-            ...taskPriority4,
-            ...taskPriority5,
-          ].map((tasklist) => {
-            //console.log(tasklist);
-            return (
-              <li key={tasklist.id}>
-                {tasklist.priorityEl && <h4>{tasklist.priorityEl}</h4>}
-                <div className={style["list-items"]}>
-                  <span>{tasklist.value}</span>
-                  <button
-                    type="submit"
-                    onClick={() => cancelHandler(tasklist.id)}
-                    className={style["delete-btn"]}
-                  >
-                    Delete
-                  </button>
+          <li>
+            <button onClick={accordionHandler}>+</button>
+            {/* <li>priority1</li> */}
+            {[
+              ...taskPriority1,
+              ...taskPriority2,
+              ...taskPriority3,
+              ...taskPriority4,
+              ...taskPriority5,
+            ].map((tasklist) => {
+              //console.log(tasklist);
+              return (
+                <div
+                  key={tasklist.id}
+                  style={{ display: open ? "block" : "none" }}
+                >
+                  {tasklist.priorityEl && (
+                    <div>
+                      <h4>{tasklist.priorityEl}</h4>
+                    </div>
+                  )}
+                  <div className={style["list-items"]}>
+                    <span>{tasklist.value}</span>
+                    <button
+                      type="submit"
+                      onClick={(e) => {
+                        cancelHandler(tasklist.id);
+                        e.preventDefault();
+                      }}
+                      className={style["delete-btn"]}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-              </li>
-            );
-          })}
+              );
+            })}
+          </li>
         </ul>
 
         {/* <ul>
